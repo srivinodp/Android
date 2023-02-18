@@ -1,0 +1,43 @@
+Activities: 
+An Activity is a single screen with a user interface that the user can interact with. 
+It is a fundamental building block of an Android application. 
+Each Activity typically corresponds to a specific screen or user interface within an application.
+
+Fragments: 
+Fragments are reusable UI components that can be combined with other Fragments to create a flexible user interface. 
+They are similar to Activities, but they can be added, removed, and replaced dynamically at runtime. 
+Fragments are often used to create more complex layouts for tablets or larger screen devices.
+
+Intents: 
+Intents are objects that facilitate communication between different components within an Android application or between different applications. 
+Intents can be used to start a new Activity, pass data between Activities or Fragments, or trigger system actions, such as sending a message or opening a web page.
+
+Views: 
+Views are the building blocks of the user interface in an Android application. 
+They represent the visual elements that the user interacts with, such as buttons, text fields, and images. 
+Views can be added to an Activity or Fragment programmatically or via XML layout files
+
+These components are essential to understand when building an Android application, as they allow developers to create a rich and dynamic user interface
+and provide a way to communicate between different parts of the application or with other applications on the device.
+
+-------------------------------------------------------------------------
+
+Layouts: 
+Layouts are XML files that define the visual structure and appearance of an Android application's user interface. 
+Layouts are used to arrange Views and other UI elements on the screen.
+
+Adapters: 
+Adapters are used to populate Views, such as a ListView or RecyclerView, with data. 
+Adapters provide a bridge between the data source and the UI, allowing the data to be displayed in a structured and organized way.
+
+Services: 
+Services are background tasks that run independently of the user interface. 
+They are used to perform tasks that require long-running operations or to run tasks in the background, even when the application is not actively in use.
+
+Broadcast receivers: 
+Broadcast receivers are components that listen for system-wide events or broadcasts. 
+They are used to respond to events such as when the device is connected to the internet, a phone call is received, or the battery is low.
+
+Content Providers: 
+Content Providers are components that allow access to data stored in a database or other data source. 
+They provide a standardized interface for accessing and manipulating data from within an application or from other applications.
