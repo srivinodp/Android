@@ -41,3 +41,14 @@ They are used to respond to events such as when the device is connected to the i
 Content Providers: 
 Content Providers are components that allow access to data stored in a database or other data source. 
 They provide a standardized interface for accessing and manipulating data from within an application or from other applications.
+
+--------------------------------------
+Multi-Threading
+
+HandlerThread is a class in the Android framework that provides a convenient way to start a new thread that has a Looper. A Looper allows a thread to receive and process messages sent to it from other threads. It is typically used for performing long-running background tasks that may interact with the UI.
+
+Thread is a class in Java that represents a thread of execution. It provides the basic functionality to create and start a new thread. Thread is a low-level construct and does not provide any higher-level abstractions for managing concurrency.
+
+ExecutorService is an interface in Java's java.util.concurrent package that provides a high-level abstraction for managing concurrency. It provides a way to submit tasks for execution asynchronously and manages a pool of threads to execute those tasks. ExecutorService provides several methods for submitting tasks, such as submit(), invokeAll(), and invokeAny().
+
+In summary, HandlerThread is a convenient way to start a new thread that has a Looper, Thread is a low-level construct for managing threads, and ExecutorService is a high-level abstraction for managing concurrency. They all serve different purposes and can be used in different scenarios depending on the requirements of the application.
