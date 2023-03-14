@@ -65,3 +65,13 @@ executor.execute(new Runnable() {
 
 // Shutdown the executor when you're done with it
 executor.shutdown();
+
+There are other ways to implement multithreading in Java, such as using the following:
+
+Callable and Future interfaces
+Fork/Join framework
+CompletableFuture class
+Timer and TimerTask classes for scheduling tasks to run at specific times
+Using synchronized and volatile keywords for shared variables between threads
+However, the first three methods you mentioned (Thread class, Executor Service, and Handler Thread) are some of the most commonly used and versatile ways to implement multithreading in Java.
+-------------------------------------------
