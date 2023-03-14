@@ -52,3 +52,16 @@ Thread is a class in Java that represents a thread of execution. It provides the
 ExecutorService is an interface in Java's java.util.concurrent package that provides a high-level abstraction for managing concurrency. It provides a way to submit tasks for execution asynchronously and manages a pool of threads to execute those tasks. ExecutorService provides several methods for submitting tasks, such as submit(), invokeAll(), and invokeAny().
 
 In summary, HandlerThread is a convenient way to start a new thread that has a Looper, Thread is a low-level construct for managing threads, and ExecutorService is a high-level abstraction for managing concurrency. They all serve different purposes and can be used in different scenarios depending on the requirements of the application.
+
+ExecutorService executor = Executors.newSingleThreadExecutor();
+
+executor.execute(new Runnable() {
+    @Override
+    public void run() {
+        // Code to be executed on a separate thread
+        // ...
+    }
+});
+
+// Shutdown the executor when you're done with it
+executor.shutdown();
