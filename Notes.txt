@@ -94,3 +94,28 @@ SignalStrength - This class represents the signal strength of the current networ
 CarrierConfigManager - This class provides access to carrier-specific configuration information, including LTE-related settings.
 
 NetworkRegistrationInfo - This class provides information about the current network registration state, including the current LTE network registration status.
+----------------------------------------
+
+getCallState() - This method returns the current call state, such as whether the phone is ringing, in a call, or idle.
+
+getDataActivity() - This method returns the current data activity state, such as whether data is being transmitted or received.
+
+getDataState() - This method returns the current data connection state, such as whether the device is connected to a cellular network or not.
+
+getNetworkType() - This method returns the network type, such as LTE, HSPA, or EDGE.
+
+getPhoneType() - This method returns the phone type, such as GSM or CDMA.
+
+getSimState() - This method returns the SIM card state, such as whether it is ready, locked, or absent.
+
+getSubscriberId() - This method returns the unique identifier of the subscriber, such as the IMSI for GSM or the MEID for CDMA.
+
+getDeviceId() - This method returns the unique device ID, such as the IMEI for GSM or the MEID for CDMA.
+
+getLine1Number() - This method returns the phone number associated with the SIM card.
+
+getVoiceMailNumber() - This method returns the phone number of the voice mail system.
+
+getAllCellInfo() - This method returns a list of CellInfo objects, which include information about all visible cell towers, including LTE.
+
+getCellLocation() - This method returns the location of the current cell tower, including LTE.
