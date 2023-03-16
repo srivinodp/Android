@@ -75,3 +75,22 @@ Timer and TimerTask classes for scheduling tasks to run at specific times
 Using synchronized and volatile keywords for shared variables between threads
 However, the first three methods you mentioned (Thread class, Executor Service, and Handler Thread) are some of the most commonly used and versatile ways to implement multithreading in Java.
 -------------------------------------------
+
+
+TelephonyManager - This class provides access to information about the telephony services on the device, including LTE.
+
+CellIdentityLte - This class represents LTE cell identity information, including the Mobile Country Code (MCC), Mobile Network Code (MNC), and the cell ID.
+
+CellInfoLte - This class represents LTE cell information, including the CellIdentityLte and signal strength information.
+
+CellSignalStrengthLte - This class represents the LTE signal strength information, including signal strength, signal to noise ratio, and timing advance.
+
+ServiceState - This class provides information about the current network service state, including whether the device is connected to an LTE network.
+
+PhoneStateListener - This class listens for changes in telephony service state, including changes in LTE network state.
+
+SignalStrength - This class represents the signal strength of the current network, including LTE signal strength.
+
+CarrierConfigManager - This class provides access to carrier-specific configuration information, including LTE-related settings.
+
+NetworkRegistrationInfo - This class provides information about the current network registration state, including the current LTE network registration status.
