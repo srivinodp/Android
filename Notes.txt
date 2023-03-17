@@ -147,3 +147,60 @@ In this example, IMyService is an interface that defines three methods: sayHello
 These methods can be called by a client to communicate with the service.
 
 AIDL interfaces are defined in .aidl files, which are then compiled into Java classes that can be used by the service and the client to communicate with each other.
+
+--------------------------------------------
+
+In Android, 
+Parcelable is an interface that allows you to serialize and deserialize custom objects so that they can be passed between different components of your application. 
+This is especially useful when you need to pass complex data between different activities, services, or processes.
+
+When you implement the Parcelable interface in your custom object, you are providing a way for the Android system to convert your object into a sequence of bytes that can be easily transferred between components.
+To do this, you need to define the serialization and deserialization methods that will be used by the system to read and write the object's data.
+
+The Parcel class is used by the Android system to handle the serialization and deserialization of Parcelable objects. 
+A Parcel instance is a container for a sequence of bytes that represent the serialized data of a Parcelable object. 
+You can use methods provided by the Parcel class to write data to a Parcel when serializing an object, or read data from a Parcel when deserializing an object.
+
+Here's an example of a custom object that implements the Parcelable interface:
+
+Sample code
+public class Person implements Parcelable {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Serialization method
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(age);
+    }
+
+    // Deserialization method
+    protected Person(Parcel in) {
+        name = in.readString();
+        age = in.readInt();
+    }
+
+    public static final Creator<Person> CREATOR = new Creator<Person>() {
+        @Override
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
+
+    // Other methods and constructors
+    // ...
+}
+In this example, the Person class implements the Parcelable interface, which requires the implementation of the writeToParcel() and Parcelable.Creator methods. 
+The writeToParcel() method is used to serialize the Person object by writing its data to a Parcel, and the 
+Parcelable.Creator methods are used to deserialize the Person object by creating a new instance of the class from a Parcel.
