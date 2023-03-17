@@ -119,3 +119,31 @@ getVoiceMailNumber() - This method returns the phone number of the voice mail sy
 getAllCellInfo() - This method returns a list of CellInfo objects, which include information about all visible cell towers, including LTE.
 
 getCellLocation() - This method returns the location of the current cell tower, including LTE.
+
+-------------------------------------------
+
+AIDL stands for "Android Interface Definition Language". 
+
+It is a language used in Android to define the interface for a remote service that can be accessed by other applications or components. 
+AIDL provides a way to define the methods that can be called by a client to communicate with the remote service.
+
+AIDL is used in the Android system to allow different applications or components to communicate with each other. 
+For example, an application might define a service that exposes a set of methods for other applications to call. 
+By defining the service's interface using AIDL, other applications can call these methods as if they were part of their own code.
+
+AIDL defines a set of data types that can be used to pass data between the client and the service. 
+These data types include basic types such as int, long, float, and String, as well as more complex types such as arrays, lists, and custom objects.
+
+Here's an example of an AIDL interface definition:
+
+aidl
+Sample code
+interface IMyService {
+    void sayHello();
+    int add(int a, int b);
+    List<String> getList();
+}
+In this example, IMyService is an interface that defines three methods: sayHello(), add(), and getList(). 
+These methods can be called by a client to communicate with the service.
+
+AIDL interfaces are defined in .aidl files, which are then compiled into Java classes that can be used by the service and the client to communicate with each other.
