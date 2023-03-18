@@ -242,3 +242,13 @@ You can then use the Java interface to communicate with the Android service that
 
 In summary, JNI, AIDL, and BP files are three different technologies used in Android development. 
 JNI enables Java code to interact with native code, AIDL defines interfaces for Android services, and BP files define the format of data transmitted between processes in the Android operating system.
+
+---------------------------------
+
+Assuming that "NetworkAgentConfig" is a custom class that implements the Parcelable interface, 
+this code allows instances of "NetworkAgentConfig" to be passed between different Android components 
+(such as activities, services, or broadcast receivers) using an Intent or a Binder.
+
+Parcelable objects are commonly used in Android to transfer data between activities, services, and other components, 
+as they provide a more efficient alternative to Java's Serializable interface. However, implementing Parcelable requires 
+more manual coding than Serializable, as you need to write custom serialization and deserialization logic for each object.
