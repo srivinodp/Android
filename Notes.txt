@@ -252,3 +252,114 @@ this code allows instances of "NetworkAgentConfig" to be passed between differen
 Parcelable objects are commonly used in Android to transfer data between activities, services, and other components, 
 as they provide a more efficient alternative to Java's Serializable interface. However, implementing Parcelable requires 
 more manual coding than Serializable, as you need to write custom serialization and deserialization logic for each object.
+
+----------------------------------------------
+
+IDL (Android Interface Definition Language) is a language used to define inter-process communication (IPC) interfaces in Android. AIDL allows different Android components to communicate with each other, even if they are running in different processes.
+
+One of the main features of AIDL is the ability to pass objects between processes. This is where the Parcelable classes you mentioned come into play. When you define an AIDL interface, you can include arguments and return values that are Parcelable objects.
+
+In the code you provided, it's possible that the AIDL file contains a definition for an AIDL interface that includes a method that takes a NetworkAgentConfig object (which implements the Parcelable interface) as a parameter or return value. However, without seeing the rest of the code, it's difficult to say for sure what the purpose of the AIDL file is.
+
+Overall, the purpose of AIDL is to facilitate communication between Android components that are running in different processes. It provides a way for developers to define interfaces that other components can use to interact with their code, and it includes features like parcelable objects to make it easy to pass complex data structures between processes.
+
+------------------------------------------------
+
+public class MainActivity extends AppCompatActivity {
+    private Handler mHandler;
+    private HandlerThread mHandlerThread;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Create and start a new HandlerThread
+        mHandlerThread = new HandlerThread("MyHandlerThread");
+        mHandlerThread.start();
+        
+        // Create a Handler associated with the new HandlerThread's Looper
+        mHandler = new Handler(mHandlerThread.getLooper());
+
+        // Post a message to the new HandlerThread's message queue
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                // Do some background work here
+                // ...
+                // Send a message to the UI thread
+                Message message = Message.obtain();
+                message.what = 1;
+                message.obj = "Hello from HandlerThread!";
+                mHandlerUi.sendMessage(message);
+            }
+        });
+    }
+    
+    // Handler associated with the UI thread's Looper
+    private Handler mHandlerUi = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    // Display the message received from the HandlerThread
+                    Toast.makeText(MainActivity.this, (String) msg.obj, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Quit the HandlerThread's Looper to free up resources
+        mHandlerThread.quit();
+    }
+}
+
+In this example, we create a new HandlerThread called "MyHandlerThread" and start it. 
+We then create a Handler instance associated with the HandlerThread's Looper. 
+We then post a Runnable to the HandlerThread's message queue, which does some background work and 
+then sends a message to the UI thread using the mHandlerUi instance. The UI thread's Handler receives the message and displays it in a Toast.
+
+Note that we also call the quit() method on the HandlerThread instance in the onDestroy() method to 
+ensure that its Looper is properly stopped and its resources are freed up.
+
+No, if no Looper is specified when creating a Handler, then the current thread must already have a Looper associated with it.
+If the current thread does not have a Looper, then attempting to create a Handler without a Looper 
+will throw a "java.lang.RuntimeException: Can't create handler inside thread that has not called Looper.prepare()" exception.
+
+Therefore, in order to associate a Handler with the UI thread, you need to create the Handler on the UI thread 
+or on a thread that has a Looper associated with it (such as the main thread or a HandlerThread).
+
+In the above code, we can be sure that uiHandler is associated with the UI thread because it is created 
+with the default constructor of the Handler class, which creates a Handler instance that is associated with the thread that instantiates it.
+Since this code is running on the UI thread, uiHandler will also be associated with the UI thread.
+
+----------------------------------------------------
+Looper is a mechanism that allows you to create a message loop in a thread. 
+It is typically associated with a single thread and provides a way to process messages in that thread.
+
+Multiple handlers can be associated with the same looper, and each handler provides a way to post messages to the looper's message queue.
+When a message is ready to be processed, the next available handler in the queue will handle it.
+
+HandlerThread is a class that provides a convenient way to create a thread with a Looper. 
+When you create a HandlerThread, it automatically creates a Looper and a message queue for that thread. 
+The HandlerThread also provides a convenient way to create and manage handlers associated with that thread. 
+
+-------------------------------------------------
+Lets say a handlerThread is created name - A, and its looper name looperA
+So now we created 2 handler objects X,Y associated with looperA.
+and X, Y have overriden handleMessage with different logic.. now suppose when we get a message from another thread to the looperA. Which handler will handle X or Y?
+
+Ans - 
+When you post a message to the looperA, the message will be added to the message queue associated with looperA. When the message is ready to be processed, the next available Handler associated with looperA will handle it.
+
+In this case, you have created two Handler objects X and Y associated with looperA. When the message is ready to be processed, one of the Handlers X or Y will handle it based on the order in which they were created and added to looperA's message queue.
+
+If both handlers are idle and available, the message will be handled by the Handler that was created first and added to the message queue first. If that Handler is busy processing another message, then the message will be handled by the next available Handler in the queue.
+
+So, it is not possible to determine which Handler will handle the message without knowing the order in which they were created and added to looperA's message queue.
+
+------------------------------------------------------
+
