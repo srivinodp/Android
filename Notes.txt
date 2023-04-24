@@ -363,3 +363,55 @@ So, it is not possible to determine which Handler will handle the message withou
 
 ------------------------------------------------------
 
+
+Lets discuss about the inflaters how they are useful...
+have you ever thought of side buttons(multiple options in settings app?)
+or when you long press a view and want something to happen... like giving list of options to the user.. lets see
+
+In Android, the context menu is a floating menu that appears when the user long-presses on a View or item in a list. It provides options to the user that are contextually relevant to the selected item or View. For example, if the user long-presses on a text field, the context menu might offer options to cut, copy, or paste text.
+
+Here's an example code for creating a context menu:
+
+First, create a menu resource file in your project. Right-click on the "res" folder in your project and select "New" -> "Android Resource Directory". In the dialog that appears, select "menu" as the resource type, and give it a name (e.g. "context_menu"). Click "OK" to create the directory.
+
+Inside the new "menu" directory, create a new XML file called "my_context_menu.xml" (you can name it anything you like). In this file, define the menu items that you want to appear in the context menu. Here's an example:
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_copy"
+          android:title="Copy"/>
+    <item android:id="@+id/menu_paste"
+          android:title="Paste"/>
+</menu>
+
+In your activity or fragment, register the View or list item that you want to attach the context menu to. For example, if you have a TextView called "myTextView", you can register it like this:
+
+
+registerForContextMenu(myTextView);
+
+
+Override the onCreateContextMenu() method in your activity or fragment to inflate the menu resource and handle the menu item clicks. Here's an example:
+
+@Override
+public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    if (v.getId() == R.id.myTextView) {
+        getMenuInflater().inflate(R.menu.my_context_menu, menu);
+    }
+}
+
+@Override
+public boolean onContextItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.menu_copy:
+            // Handle copy option
+            return true;
+        case R.id.menu_paste:
+            // Handle paste option
+            return true;
+        default:
+            return super.onContextItemSelected(item);
+    }
+}
+This code registers "myTextView" for the context menu, inflates the "my_context_menu" resource when the user long-presses on the TextView, and handles the click events for the "Copy" and "Paste" menu items.
+
+That's it! You now have a basic context menu in your Android app. You can customize it further by adding more menu items, changing the menu layout, or using icons for the menu items.
+
