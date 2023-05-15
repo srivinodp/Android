@@ -34,10 +34,15 @@ If the activity is already created but has been stopped, the onRestart() method 
 Finally, the onResume() method is called, indicating that the activity is now in the foreground and ready to receive user input.
 It's worth noting that if the activity was not destroyed while the app was in the background, it will retain its previous state when it comes back into the foreground. However, if the system needs to reclaim memory while the app is in the background, it may destroy the activity, in which case the activity will need to be recreated when the app comes back into the foreground.
 
-In summary, when an app returns from the background to the foreground, the activity that was in the foreground before the app went to the background will go through the onRestart(), onStart(), and onResume() methods.
+In summary, when an app returns from the background to the foreground, 
+the activity that was in the foreground before the app went to the background will go through the onRestart(), onStart(), and onResume() methods.
 
-The onDestroy() method for an activity is called when the activity is being destroyed, either because the user has explicitly closed the activity or because the system is reclaiming memory and has decided to destroy the activity to free up resources.
+The onDestroy() method for an activity is called when the activity is being destroyed, 
+either because the user has explicitly closed the activity or because the system is reclaiming memory 
+and has decided to destroy the activity to free up resources.
 
-However, it's important to note that just because the onDestroy() method is called doesn't necessarily mean that the activity is completely gone from memory. If the user navigates back to the activity using the back button or some other navigation mechanism, the activity can be recreated and its state can be restored. This is because Android maintains a back stack of activities, which allows users to navigate back through the app's history.
-
+However, it's important to note that just because the onDestroy() method is called 
+doesn't necessarily mean that the activity is completely gone from memory. 
+If the user navigates back to the activity using the back button or some other navigation mechanism, 
+the activity can be recreated and its state can be restored. This is because Android maintains a back stack of activities, which allows users to navigate back through the app's history.
 So, while the onDestroy() method indicates that the activity is being destroyed, it doesn't necessarily mean that the activity and all of its resources are being completely removed from memory. It just means that the activity is no longer visible and can be destroyed at any time by the system if necessary.
